@@ -16,7 +16,7 @@ preassigned = [(0, 0, 0), (0, 3, 3), (2, 2, 1), (3, 1, 2)]
 problem = pulp.LpProblem("example01", pulp.LpMaximize)
 
 # x[i][j][k] = 1 => i行j列に値kを割り当てる
-x = [[[pulp.LpVariable('x({},{}, {})'.format(i, j, k), cat=pulp.LpBinary) for k in range(values)] for j in range(column)] for i in range(row)]
+x = [[[pulp.LpVariable('x({},{},{})'.format(i, j, k), cat=pulp.LpBinary) for k in range(values)] for j in range(column)] for i in range(row)]
 
 problem.setObjective(pulp.lpSum(x[i][j][k] for i in range(row) for j in range(column) for k in range(values)))
 
