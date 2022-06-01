@@ -1,5 +1,3 @@
-from time import time
-from xml.etree.ElementPath import prepare_self
 import pulp
 
 CPLEX_PATH="/Applications/CPLEX_Studio221/cplex/bin/x86-64_osx/cplex"

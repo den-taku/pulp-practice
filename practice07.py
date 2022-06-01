@@ -1,4 +1,3 @@
-from time import time
 import pulp
 
 CPLEX_PATH="/Applications/CPLEX_Studio221/cplex/bin/x86-64_osx/cplex"
