@@ -55,7 +55,7 @@ print(problem)
 problem.solve(CPLEX)
 
 if pulp.value(problem.objective) == row * column:
-    print("Solution found")
+    print("Solution found.")
     for i in range(row):
         for j in range(column):
             for k in range(values):
@@ -63,3 +63,5 @@ if pulp.value(problem.objective) == row * column:
                     print(k + 1, end=' ')
                     break
         print()
+else:
+    print("Solution not found.")
