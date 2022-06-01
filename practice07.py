@@ -12,6 +12,7 @@ color = 3
 
 problem = pulp.LpProblem("example01", pulp.LpMaximize)
 
+# x[i][c] = 1 => 頂点iに色cを割り当てる
 x = [[pulp.LpVariable('x({},{})'.format(i, c), cat=pulp.LpBinary) for c in range(color)] for i in range(vertices)]
 
 problem.setObjective(x[0][0])
@@ -31,4 +32,5 @@ CPLEX = pulp.CPLEX(path=CPLEX_PATH, msg=CPLEX_MSG, timeLimit=CPLEX_TIMELIM)
 
 problem.solve(CPLEX)
 
+# 実行可能解が存在する => 彩色可能
 print(pulp.value(problem.objective))
