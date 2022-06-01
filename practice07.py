@@ -4,6 +4,7 @@ import pulp
 CPLEX_PATH="/Applications/CPLEX_Studio221/cplex/bin/x86-64_osx/cplex"
 CPLEX_MSG = False
 CPLEX_TIMELIM = 100
+CPLEX = pulp.CPLEX(path=CPLEX_PATH, msg=CPLEX_MSG, timeLimit=CPLEX_TIMELIM)
 
 vertices = 7
 edge = [(0, 1), (0, 5), (1, 2), (1, 3), (1, 4), (1, 5), (2, 3), (2, 6), (3, 5), (5, 6)]
@@ -27,8 +28,6 @@ for (u, v) in edge:
         problem += x[u][c] + x[v][c] <= 1
 
 print(problem)
-
-CPLEX = pulp.CPLEX(path=CPLEX_PATH, msg=CPLEX_MSG, timeLimit=CPLEX_TIMELIM)
 
 problem.solve(CPLEX)
 
