@@ -18,7 +18,7 @@ x = [[pulp.LpVariable('x({},{})'.format(i, c), cat=pulp.LpBinary) for c in range
 problem.setObjective(x[0][0])
 
 # 各頂点は一つ以上色を割り当てられる
-for i in range(0, color):
+for i in range(color):
     problem += pulp.lpSum(x[i][c] for c in range(color)) >= 1
 
 # 辺の端点は別の色
