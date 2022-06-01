@@ -8,6 +8,8 @@ CPLEX = pulp.CPLEX(path=CPLEX_PATH, msg=CPLEX_MSG, timeLimit=CPLEX_TIMELIM)
 row = 4
 column = 4
 values = 4
+block_size_r = 2
+block_size_c = 2
 
 preassigned = [(0, 0, 0), (0, 3, 3), (2, 2, 1), (3, 1, 2)]
 
@@ -38,11 +40,10 @@ for j in range(column):
         problem += pulp.lpSum(x[i][j][k] for i in range(row)) <= 1
 
 # 各箱は重複しない
-# ad hoc code
-for a in range(2):
-    for b in range(2):
+for a in range(block_size_r):
+    for b in range(block_size_c):
         for k in range(values):
-            problem += x[0 + a * 2][0 + b * 2][k] + x[0 + a * 2][1 + b * 2][k] + x[1 + a * 2][0 + b * 2][k] + x[1 + a * 2][1 + b * 2][k] <= 1
+            problem += pulp.lpSum(x[i + a * block_size_r][j + b * block_size_c][k] for i in range(block_size_r) for j in range(block_size_c)) <= 1
 
 print(problem)
 
