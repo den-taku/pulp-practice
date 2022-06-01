@@ -61,4 +61,5 @@ if pulp.value(problem.objective) == row * column:
             for k in range(values):
                 if pulp.value(x[i][j][k]):
                     print(k + 1, end=' ')
+                    break
         print()
