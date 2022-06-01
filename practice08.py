@@ -45,6 +45,11 @@ for a in range(block_size_r):
         for k in range(values):
             problem += pulp.lpSum(x[i + a * block_size_r][j + b * block_size_c][k] for i in range(block_size_r) for j in range(block_size_c)) <= 1
 
+# 各点に数字を割り振る
+for i in range(row):
+    for j in range(column):
+        problem += pulp.lpSum(x[i][j][k] for k in range(values)) >= 1
+
 print(problem)
 
 problem.solve(CPLEX)
